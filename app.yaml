@@ -1,0 +1,25 @@
+application: torrext
+version: 1
+runtime: python
+api_version: 1
+
+default_expiration: "1d"
+
+handlers:
+- url: /favicon.ico
+  static_files: s/favicon.ico
+  upload: s/favicon.ico
+  expiration: "30d"  
+
+- url: /robots.txt
+  static_files: s/robots.txt
+  upload: s/robots.txt
+  expiration: "30d"
+- url: /s
+  static_dir: s
+- url: /
+  script: main.py
+- url: /upload
+  script: upload.py
+- url: .*
+  script: torrent_page.py

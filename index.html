@@ -1,0 +1,42 @@
+<html>
+  <head>
+	<link rel="stylesheet" href="/s/blueprint/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="/s/blueprint/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]>
+	  <link rel="stylesheet" href="/s/blueprint/ie.css" type="text/css" media="screen, projection">
+	<![endif]-->
+  </head>
+  <body>
+	<div class="container">
+		<div class="span-24 prepend-2"><h1><a href="/">torrext</a></h1></div>
+<div><hr /><form action="/upload" method="post" enctype="multipart/form-data">
+      <div class="span-11 prepend-1"><input type="file" name="file" class="title"/></div>
+      <div class="span-11 prepend-1 last"><input type="submit" name="upload" value="Upload" class="title span-10"></div>
+    </form><hr /></div>
+    <div class="span-11 prepend-1">
+	<h2>Most recent torrents</h2>
+	<ul>
+    {% for torrent in torrents %}
+      <li><a href="/{{ torrent.info_hash }}">{{ torrent.info_hash }}</a></li>
+    {% endfor %}
+    </ul>
+    </div>
+    <div class="span-12 last">
+    	No torrent files hosted here.<br />
+        No trackers here either.<br />
+        Data in the database is not indexed so searching it is impossible.<br />
+        Torrents are identified only by info_hash.<br />
+        That is all, thanks.<br />
+    </div>
+    </div>
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-4146423-4");
+	pageTracker._trackPageview();
+	} catch(err) {}</script>
+  </body>
+</html>
