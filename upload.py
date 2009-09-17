@@ -66,15 +66,7 @@ class Upload(webapp.RequestHandler):
           self.response.out.write('bad torrent, no file name declared')
     
       torrent.put()
-      #self.redirect('/' + info_hash_b32)
-      import urllib
-      params = urllib.urlencode({
-             'name': 'torrent',
-             'type': 'application/x-bittorrent',
-             'file': 'my.torrent'
-      })
-      f = urllib.urlopen("http://www.musi-cal.com/cgi-bin/query", params)
-      self.response.out.write(f.read())
+      self.redirect('/' + info_hash_b32)
       
     else:
       self.response.out.write('torrent already here')
