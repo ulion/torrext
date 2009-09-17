@@ -10,10 +10,17 @@ handlers:
   static_files: s/favicon.ico
   upload: s/favicon.ico
   expiration: "30d"  
-
 - url: /robots.txt
   static_files: s/robots.txt
   upload: s/robots.txt
+  expiration: "30d"
+- url: /canvas.html
+  static_files: s/canvas.html
+  upload: s/canvas.html
+  expiration: "30d"
+- url: /rpc_relay.html
+  static_files: s/rpc_relay.html
+  upload: s/rpc_relay.html
   expiration: "30d"
 - url: /s
   static_dir: s

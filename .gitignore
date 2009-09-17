@@ -1,4 +1,4 @@
 # osx noise
 .DS_Store
 profile
-s/blueprint
+s/*
