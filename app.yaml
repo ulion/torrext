@@ -26,10 +26,13 @@ handlers:
   static_dir: s
 - url: /
   script: main.py
+  secure: optional
 - url: /upload
   script: upload.py
+  secure: optional
 - url: /flushmemcache
   script: flushmemcache.py
   login: admin
 - url: .*
   script: torrent_page.py
+  secure: optional

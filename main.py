@@ -15,7 +15,7 @@ times.append(begin-time.time())
 
 class Torrent(db.Model):
   info_hash = db.StringProperty()
-  content = db.TextProperty()
+  #content = db.TextProperty()
   date = db.DateTimeProperty(auto_now_add=True)
   
 class MainPage(RequestHandler):
@@ -28,7 +28,7 @@ class MainPage(RequestHandler):
       times.append(begin-time.time())
       self.response.out.write('<!--imports: ' + str(start-time.time()) + '-->\n')
       torrents_query = Torrent.all().order('-date')
-      torrents = torrents_query.fetch(10)
+      torrents = torrents_query.fetch(100)
       self.response.out.write('<!--fetch(10): ' + str(start-time.time()) + '-->\n')
       template_values = {
         'torrents': torrents,
