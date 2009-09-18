@@ -28,5 +28,8 @@ handlers:
   script: main.py
 - url: /upload
   script: upload.py
+- url: flushmemcache
+  script: flushmemcache.py
+  login: admin
 - url: .*
   script: torrent_page.py

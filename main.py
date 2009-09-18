@@ -14,7 +14,8 @@ class Torrent(db.Model):
   
 class MainPage(webapp.RequestHandler):
   def get(self):
-    frontpage=memcache.get('front_page')
+    #frontpage=memcache.get('front_page')
+    frontpage=None
     if frontpage is None:
       torrents_query = Torrent.all().order('-date')
       torrents = torrents_query.fetch(10)
