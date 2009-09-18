@@ -61,7 +61,7 @@ class Upload(webapp.RequestHandler):
           torrent.content  = "info hash: " + info_hash + "\n"
           torrent.content += "magnet link: <a href=\"magnet:?xt=urn:btih:" + info_hash_b32 + "\">magnet:?xt=urn:btih:" + info_hash_b32 + "</a>\n"
           if torrent_url is not None: # IN CASE ITS FROM A FETCH ALSO ADD WHERE IT CAME FROM
-            torrent.content  += "Download: <a href=\"" + torrent_url + ">" + torrent_url + "</a>\n"
+            torrent.content  += "Download: <a href=\"" + torrent_url + "\">" + torrent_url + "</a>\n"
           else:
             torrent.content  += "\n"
           try: # TRY TO READ THE CREATION DATE
