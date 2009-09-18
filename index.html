@@ -10,7 +10,7 @@
 	<div class="container">
 		<div class="span-24 prepend-2"><h1><a href="/">torrext</a></h1></div>
 <div><hr /><form action="/upload" method="post" enctype="multipart/form-data">
-	<div class="span-11 prepend-1 append-12"><label>URL:</label><br /><input type="text" name="torrent_url" class="title span-10" /></div>
+	<div class="span-11 prepend-1 append-12"><label>.torrent file URL:</label><br /><input type="text" name="torrent_url" class="title span-10" /></div>
       <div class="span-11 prepend-1"><label>OR File:</label><br /><input type="file" name="file" class="title" /></div>
       <div class="span-11 prepend-1 last"><label>And:</label><br /><input type="submit" name="upload" value="Poast it!" class="title span-10"></div>
     </form><hr /></div>
@@ -23,10 +23,24 @@
     </ul>
     </div>
     <div class="span-12 last">
+	    <strong>What?</strong><br />
     	No torrent files hosted here.<br />
         No trackers here either.<br />
         Data in the database is not indexed so searching it is impossible.<br />
-        Torrents are identified only by info_hash.<br />
+        Torrents are identified only by info_hash.<br /><br />
+        <strong>API?</strong><br />
+        not a problem...<br />
+        Send HTTP POST requests to /upload<br />
+		if you want to send a file just put it in the "file" argument<br />
+		if you prefer that torrext fetches the file from an http(s)<br />
+		server put the url to the file in "url argument"<br /><br />
+		
+		if everything goes has planed you'll get a 302 redirect
+		to the page of the submited torrent<br />
+		in case of errors you'll get a message<br /><br />
+		
+		because torrext is still being developed it is best to check the code
+		and see what messages are returned in each case: <a href="http://github.com/medecau/torrext/blob/master/upload.py">upload.py</a><br />
         That is all, thanks.<br />
     </div>
     </div>

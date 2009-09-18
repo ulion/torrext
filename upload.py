@@ -23,12 +23,18 @@ class Torrent(db.Model):
   
 class Upload(webapp.RequestHandler):
   def post(self):
-    
     torrent_url=self.request.get('torrent_url')
+    
     if torrent_url is not None: # CHECK IF IT'S URL SUBMISSION
-      self.response.out.write(torrent_url)
-      file_contents='omg'
-                                                                 ## TODO: get the file!!!
+      import urllib2
+      from google.appengine.api import urlfetch
+      try:
+        result = urlfetch.fetch(torrent_url)
+        file_contents=result.content
+      except:
+        self.response.out.write('failed to get the file ' + str(sys.exc_info()[0]))
+
+
     else:
       try: # TRY TO ACCESS FILE CONTENTS
         file_contents = self.request.POST['file'].value
