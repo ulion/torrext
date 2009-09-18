@@ -24,7 +24,7 @@ class Torrent(db.Model):
 class Upload(webapp.RequestHandler):
   def post(self):
     torrent_url=self.request.get('torrent_url')
-    torrent64=self.request.get('torrent64')
+    torrent64=self.request.get('fileb64')
     if torrent_url is not None: # CHECK IF IT'S URL SUBMISSION
       import urllib2
       from google.appengine.api import urlfetch
