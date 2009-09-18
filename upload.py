@@ -1,17 +1,10 @@
 import cgi
 import os
-from google.appengine.ext.webapp import template
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
-from google.appengine.api import memcache
-from google.appengine.api import urlfetch
 
-import bencode
-import sha
 import base64
-import time
-import binascii
 import sys
 
 class Torrent(db.Model):
@@ -44,6 +37,7 @@ class Upload(webapp.RequestHandler):
         self.response.out.write('no url nor file were provided')
       
     try: # DO NOT OUTPUT ANYTHING TOO UGLY :P
+      import bencode
       try: # TRY TO DECODE BENCODE
         file_dictionary = bencode.bdecode(file_contents)
       except:
@@ -51,7 +45,9 @@ class Upload(webapp.RequestHandler):
         file_dictionary=None
         
       if file_dictionary is not None:
+        import sha
         info_hash = sha.new(bencode.bencode(file_dictionary['info'])).hexdigest().upper() # create info_hash
+        import binascii
         info_hash_b32 = base64.b32encode(binascii.unhexlify(info_hash))
   
         torrents_query = Torrent.all().order('-date')
@@ -67,6 +63,7 @@ class Upload(webapp.RequestHandler):
           else:
             torrent.content  += "\n"
           try: # TRY TO READ THE CREATION DATE
+            import time
             torrent.content += "Created: " + time.asctime(time.gmtime(file_dictionary['creation date'])) + "\n"
           except:
             torrent.content += "no date in file.\n"
@@ -96,6 +93,8 @@ class Upload(webapp.RequestHandler):
               self.response.out.write('bad torrent, no file name declared')
 
           torrent.put() # STORE THE TEXT TO THE DATASTORE
+          from google.appengine.api import memcache
+          memcache.delete('front_page')
           self.redirect('/' + info_hash_b32) # 302 HTTP REDIRECT TO THE TORRENT PAGE
     
         else:
