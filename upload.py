@@ -25,18 +25,18 @@ class Upload(webapp.RequestHandler):
   def post(self):
     
     torrent_url=self.request.get('torrent_url')
-    if torrent_url is not None:
+    if torrent_url is not None: # CHECK IF IT'S URL SUBMISSION
       self.response.out.write(torrent_url)
       file_contents='omg'
                                                                  ## TODO: get the file!!!
     else:
-      try:
+      try: # TRY TO ACCESS FILE CONTENTS
         file_contents = self.request.POST['file'].value
       except:
         self.response.out.write('no url nor file were provided')
       
-    try:
-      try:
+    try: # DO NOT OUTPUT ANYTHING TOO UGLY :P
+      try: # TRY TO DECODE BENCODE
         file_dictionary = bencode.bdecode(file_contents)
       except:
         self.response.out.write('torrent file can\'t be read')
@@ -86,10 +86,10 @@ class Upload(webapp.RequestHandler):
           torrent.put() # STORE THE TEXT TO THE DATASTORE
           self.redirect('/' + info_hash_b32) # 302 HTTP REDIRECT TO THE TORRENT PAGE
     
-      else:
-        self.response.out.write('torrent already here')
+        else:
+          self.response.out.write('torrent already here')
     except:
-      self.response.out.write('unexpected error' + str(sys.exc_info()))
+      self.response.out.write('unexpected error' + str(sys.exc_info()[0][0]))
 
 application = webapp.WSGIApplication([('/upload', Upload)],
                                      debug=True)
