@@ -28,7 +28,7 @@ class MainPage(webapp.RequestHandler):
     self.response.out.write(frontpage)
 
 
-application = webapp.WSGIApplication([('/', MainPage)]
+application = webapp.WSGIApplication([('/', MainPage)],
                                      debug=True)
 
 def main():
