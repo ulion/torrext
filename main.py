@@ -5,7 +5,6 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 from google.appengine.api import memcache
-#from google.appengine.api import urlfetch
 
 
 class Torrent(db.Model):
@@ -18,7 +17,7 @@ class MainPage(webapp.RequestHandler):
     frontpage=memcache.get('front_page')
     if frontpage is None:
       torrents_query = Torrent.all().order('-date')
-      torrents = torrents_query.fetch(100)
+      torrents = torrents_query.fetch(10)
       template_values = {
         'torrents': torrents,
         }
