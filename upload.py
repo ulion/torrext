@@ -24,7 +24,7 @@ class Torrent(db.Model):
 class Upload(webapp.RequestHandler):
   def post(self):
     torrent_url=self.request.get('torrent_url')
-    
+    torrent64=self.request.get('torrent64')
     if torrent_url is not None: # CHECK IF IT'S URL SUBMISSION
       import urllib2
       from google.appengine.api import urlfetch
@@ -33,7 +33,9 @@ class Upload(webapp.RequestHandler):
         file_contents=result.content
       except:
         self.response.out.write('failed to get the file ' + str(sys.exc_info()[0]))
-
+        
+    elif torrent64 is not None: # BASE64 ENCODED FILE
+      file_contents = base64.b64decode(torrent64)
 
     else:
       try: # TRY TO ACCESS FILE CONTENTS

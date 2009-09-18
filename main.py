@@ -1,9 +1,6 @@
 import cgi
-import os
-from google.appengine.ext.webapp import template
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
-from google.appengine.ext import db
 from google.appengine.api import memcache
 
 
@@ -14,9 +11,11 @@ class Torrent(db.Model):
   
 class MainPage(webapp.RequestHandler):
   def get(self):
-    #frontpage=memcache.get('front_page')
-    frontpage=None
+    frontpage=memcache.get('front_page')
     if frontpage is None:
+      from google.appengine.ext import db
+      from google.appengine.ext.webapp import template
+      import os
       torrents_query = Torrent.all().order('-date')
       torrents = torrents_query.fetch(10)
       template_values = {
@@ -29,8 +28,7 @@ class MainPage(webapp.RequestHandler):
     self.response.out.write(frontpage)
 
 
-application = webapp.WSGIApplication(
-                                     [('/', MainPage)],
+application = webapp.WSGIApplication([('/', MainPage)]
                                      debug=True)
 
 def main():
