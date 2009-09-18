@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+   <channel>
+      <title>Torrext</title>
+      <link>http://torrext.appspot.com/</link>
+      <description>Processed and available.</description>
+      <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+      <ttl>10</ttl>
+{% for torrent in torrents %}      <item>
+         <title>{{ torrent.info_hash }}</title>
+         <link>http://torrext.appspot.com/{{ torrent.info_hash }}</link>
+         <description>{{ torrent.content }}</description>
+         <pubDate>{{ torrent.date }}</pubDate>
+      </item>
+{% endfor %}   </channel>
+</rss>
