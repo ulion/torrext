@@ -14,7 +14,7 @@
     <pre>{{ torrent.content }}</pre>
 <ul>
 	{% for url in torrent_urls %}
-	<li>{{url.url}}</li>
+	<li><a href="{{url.url}}">{{url.url}}</a></li>
 	{% endfor %}
 </ul>
 </div>

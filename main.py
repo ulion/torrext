@@ -22,9 +22,7 @@ class MainPage(RequestHandler):
         }
       path = os.path.join(os.path.dirname(__file__), 'index.html')
       frontpage=template.render(path, template_values)
-
       memcache.set('front_page', frontpage)
-
       
     self.response.out.write(frontpage)
 

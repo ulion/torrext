@@ -105,6 +105,7 @@ class Upload(webapp.RequestHandler):
             torrent.put() # STORE THE TEXT TO THE DATASTORE
             from google.appengine.api import memcache
             memcache.delete('front_page')
+            memcache.delete('rss')
         
             self.redirect('/' + info_hash) # 302 HTTP REDIRECT TO THE TORRENT PAGE
   
@@ -116,6 +117,7 @@ class Upload(webapp.RequestHandler):
               torrent_URL.put()
               from google.appengine.api import memcache
               memcache.delete(torrent.info_hash)
+              memcache.delete('rss')
               self.redirect('/' + info_hash) # 302 HTTP REDIRECT TO THE TORRENT PAGE
             else:
               self.response.out.write('torrent already here')
