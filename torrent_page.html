@@ -11,7 +11,13 @@
 	<div class="span-22 prepend-2"><h1><a href="/" id="sitename">torrext</a></h1></div>
 	<div><hr /><div class="span-20 prepend-4">
 		uploaded: {{ torrent.date }}
-    <pre>{{ torrent.content }}</pre></div>
+    <pre>{{ torrent.content }}</pre>
+<ul>
+	{% for url in torrent_urls %}
+	<li>{{url.url}}</li>
+	{% endfor %}
+</ul>
+</div>
 </div><hr /><div class="span-14 prepend-5">
 	<!-- Include the Google Friend Connect javascript library. -->
 	<script type="text/javascript" src="http://www.google.com/friendconnect/script/friendconnect.js"></script>

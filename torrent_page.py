@@ -12,22 +12,29 @@ class Torrent(db.Model):
   content = db.TextProperty()
   date = db.DateTimeProperty(auto_now_add=True)
       
-    
+class TorrentURL(db.Model):
+  torrent = db.StringProperty()
+  url = db.StringProperty()
 
 class MainPage(webapp.RequestHandler):
-  def get(self, hash_info):
-    page=memcache.get(hash_info)
+  def get(self, info_hash):
+    page=memcache.get(info_hash)
     if page is None:
-      torrents_query = Torrent.all().order('-date')
+      torrents_query = Torrent.all()
+      torrents_query.filter("info_hash = ", info_hash)
       torrent = torrents_query.get()
-
+      torrent_urls_query = TorrentURL.all()
+      torrent_urls_query.filter("torrent =", torrent.info_hash)
+      torrent_urls = torrent_urls_query.fetch(10)
+      
       template_values = {
-        'torrent': torrent
+        'torrent': torrent,
+        'torrent_urls': torrent_urls
         }
 
       path = os.path.join(os.path.dirname(__file__), 'torrent_page.html')
       page=template.render(path, template_values)
-      memcache.set(hash_info, page)
+      memcache.set(info_hash, page)
       
     self.response.out.write(page)
       
