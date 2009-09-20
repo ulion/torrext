@@ -9,36 +9,50 @@ handlers:
 - url: /tasks/rss_import
   script: tasks/rss_import.py
   login: admin
+  
+- url: /tasks/rssCloud_ping
+  script: tasks/rssCloud_ping.py
+  login: admin
+    
 - url: /favicon.ico
   static_files: s/favicon.ico
   upload: s/favicon.ico
   expiration: "30d"  
+  
 - url: /robots.txt
   static_files: s/robots.txt
   upload: s/robots.txt
   expiration: "30d"
+  
 - url: /canvas.html
   static_files: s/canvas.html
   upload: s/canvas.html
   expiration: "30d"
+  
 - url: /rpc_relay.html
   static_files: s/rpc_relay.html
   upload: s/rpc_relay.html
   expiration: "30d"
+  
 - url: /s
   static_dir: s
+  
 - url: /
   script: main.py
   secure: optional
+  
 - url: /rss.xml
   script: feed.py
   secure: optional
+  
 - url: /upload
   script: upload.py
   secure: optional
+  
 - url: /flushmemcache
   script: flushmemcache.py
   login: admin
+  
 - url: .*
   script: torrent_page.py
   secure: optional

@@ -120,6 +120,7 @@ class Upload(webapp.RequestHandler):
               from google.appengine.api import memcache
               memcache.delete(torrent.info_hash)
               memcache.delete('rss')
+              memcache.add('fresh', '1')
               self.redirect('/' + info_hash) # 302 HTTP REDIRECT TO THE TORRENT PAGE
             else:
               self.response.out.write('torrent already here')
