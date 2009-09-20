@@ -16,7 +16,7 @@ class MainPage(RequestHandler):
     if frontpage is None:
       import os
       torrents_query = Torrent.all().order('-date')
-      torrents = torrents_query.fetch(10)
+      torrents = torrents_query.fetch(25)
       template_values = {
         'torrents': torrents,
         }

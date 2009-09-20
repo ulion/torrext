@@ -26,23 +26,28 @@
     </div>
     <div class="span-12 last">
 	    <strong>What?</strong><br />
+	    Upload a .torrent to a web server and get it listed here.<br />
+	    Link to the page on emails, IMs, or whatever Social Network is en vogue this week.<br /><br />
+	    
+	    <strong>Keep in mind</strong><br />
     	No torrent files hosted here.<br />
         No trackers here either.<br />
         Data in the database is not indexed so searching it is impossible.<br />
         Torrents are identified only by info_hash.<br /><br />
+
         <strong>API?</strong><br />
         not a problem...<br />
         Send HTTP POST requests to /upload<br />
-		if you want to send a file just put it in the "file" argument<br />
-		if you prefer that torrext fetches the file from an http(s)<br />
-		server put the url to the file in "url" argument<br />
+		If you want to send a file just put it in the "file" argument,<br />
+		If you prefer that torrext fetches the file from an http(s)<br />
+		server put the url to the file in "torrent_url" argument<br />
 		https is available for secure uploads<br /><br />
 		
-		if everything goes has planed you'll get a 302 redirect
+		If everything goes has planed you'll get a 302 redirect
 		to the page of the submited torrent<br />
 		in case of errors you'll get a message<br /><br />
 		
-		because torrext is still being developed it is best to check the code
+		Because torrext is still being developed it is best to check the code
 		and see what messages are returned in each case: <a href="http://github.com/medecau/torrext/blob/master/upload.py">upload.py</a><br /><br />
 		
 		<strong>Hate MIME?</strong><br />
@@ -51,7 +56,7 @@
 		
         That is all.<br />
     </div>
-<div class="span-24"><hr /><a href="/rss.xml">RSS</a> - <a href="http://medecau.github.com/torrext">kopimi</a> - <a href="http://appspot.com">thanks!</a></div>
+<div class="span-24"><hr /><a href="/rss.xml">RSS</a> - <a href="http://medecau.github.com/torrext">kopimi</a> - <a href="http://appspot.com">thanks!</a> - <a href="#" onclick="UserVoice.Popin.show(); return false;">feedback</a></div>
     </div>
 	<script type="text/javascript">
 	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -62,5 +67,19 @@
 	var pageTracker = _gat._getTracker("UA-4146423-4");
 	pageTracker._trackPageview();
 	} catch(err) {}</script>
+	
+	
+	<script type="text/javascript">
+	  var uservoiceJsHost = ("https:" == document.location.protocol) ? "https://uservoice.com" : "http://cdn.uservoice.com";
+	  document.write(unescape("%3Cscript src='" + uservoiceJsHost + "/javascripts/widgets/tab.js' type='text/javascript'%3E%3C/script%3E"))
+	</script>
+	<script type="text/javascript">
+	UserVoice.Popin.setup({ 
+	  key: 'torrext',
+	  host: 'torrext.uservoice.com', 
+	  forum: 'general', 
+	  lang: 'en'
+	})
+	    </script>
   </body>
 </html>

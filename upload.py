@@ -6,6 +6,7 @@ from google.appengine.ext import db
 
 import base64
 import sys
+import logging
 
 class Torrent(db.Model):
   info_hash = db.StringProperty()
@@ -19,6 +20,7 @@ class TorrentURL(db.Model):
 class Upload(webapp.RequestHandler):
   def post(self):
     torrent_url=self.request.get('torrent_url')
+    logging.debug('requested download of: ' + torrent_url)
     torrent64=self.request.get('fileb64')
     file_contents=''
     if torrent_url is not None and len(torrent_url) > 12: # CHECK IF IT'S URL SUBMISSION

@@ -6,6 +6,9 @@ api_version: 1
 default_expiration: "1d"
 
 handlers:
+- url: /tasks/rss_import
+  script: tasks/rss_import.py
+  login: admin
 - url: /favicon.ico
   static_files: s/favicon.ico
   upload: s/favicon.ico
