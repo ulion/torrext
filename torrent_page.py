@@ -18,7 +18,8 @@ class TorrentURL(db.Model):
 
 class MainPage(webapp.RequestHandler):
   def get(self, info_hash):
-    page=memcache.get(info_hash)
+    #page=memcache.get(info_hash)
+    page = None
     if page is None:
       torrents_query = Torrent.all()
       torrents_query.filter("info_hash = ", info_hash)

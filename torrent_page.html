@@ -9,29 +9,29 @@
   <body>
 <div class="container">	
 	<div class="span-22 prepend-2"><h1><a href="/" id="sitename">torrext</a></h1></div>
-	<div><hr /><div class="span-20 prepend-4">
-		<div><h3>Details:</h3>
+	<div><hr /><div class="span-24">
+		<div class="span-14"><h3>Details:</h3>
 		uploaded: {{ torrent.date }}
     <pre>{{ torrent.content }}</pre>
 	<!-- AddThis Button BEGIN -->
 	<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;pub=xa-4ab5d1ce2ffa5bd6"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
-	<!-- AddThis Button END --><br /><br /></div>
+	<!-- AddThis Button END --><br /><br />
 	{% if torrent_urls %}
-<div><h3>Download:</h3>
+<h3>Download:</h3>
 <ul>
 	{% for url in torrent_urls %}
 	<li><a href="{{url.url}}">{{url.url}}</a></li>
 	{% endfor %}
-</ul></div>
+</ul>
 {% else %}
-<div><h3>Do you have a link to a copy of this torrent? Please <a href="/">submit here</a>.</h3></div>
+<h3>Do you have a link to a copy of this torrent? Please <a href="/">submit here</a>.</h3>
 {% endif %}
 </div>
-</div><hr /><div class="span-14 prepend-5">
+<div class="span-10 last">
 	<!-- Include the Google Friend Connect javascript library. -->
 	<script type="text/javascript" src="http://www.google.com/friendconnect/script/friendconnect.js"></script>
 	<!-- Define the div tag where the gadget will be inserted. -->
-	<div id="div-2835949389347965381" style="width:550px;border:1px solid #cccccc;"></div>
+	<div id="div-2835949389347965381" style="width:390px;border:1px solid #cccccc;"></div>
 	<!-- Render the gadget into a div. -->
 	<script type="text/javascript">
 	var skin = {};
@@ -57,24 +57,23 @@
 	 },
 	  skin);
 	</script>
-	
-</div><hr /></div>
-<center>
-	<script type="text/javascript"><!--
-	google_ad_client = "pub-7815980884280087";
-	/* 728x90, created 9/16/09 */
-	google_ad_slot = "4931015687";
-	google_ad_width = 728;
-	google_ad_height = 90;
-	//-->
-	</script>
-	
-	<!-- share_this script --><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js?pub=xa-4ab5d1ce2ffa5bd6"></script>
-	
-	<script type="text/javascript"
-	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-	</script>
-</center>
+</div>
+<div id="ads_bottom" class="span-24"><hr />
+		<script type="text/javascript"><!--
+		google_ad_client = "pub-7815980884280087";
+		/* 728x90, created 9/16/09 */
+		google_ad_slot = "4931015687";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+</div>
+<div class="span-24"><hr /><a href="/rss.xml">RSS<small>Cloud</small></a> - <a href="http://medecau.github.com/torrext">kopimi</a> - <a href="http://appspot.com">thanks!</a> - <a href="#" onclick="UserVoice.Popin.show(); return false;">feedback</a></div>
+</div>
+<!-- share_this script --><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js?pub=xa-4ab5d1ce2ffa5bd6"></script>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
