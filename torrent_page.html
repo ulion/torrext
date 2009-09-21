@@ -10,16 +10,22 @@
 <div class="container">	
 	<div class="span-22 prepend-2"><h1><a href="/" id="sitename">torrext</a></h1></div>
 	<div><hr /><div class="span-20 prepend-4">
+		<div><h3>Details:</h3>
 		uploaded: {{ torrent.date }}
     <pre>{{ torrent.content }}</pre>
 	<!-- AddThis Button BEGIN -->
 	<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;pub=xa-4ab5d1ce2ffa5bd6"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
-	<!-- AddThis Button END -->
+	<!-- AddThis Button END --><br /><br /></div>
+	{% if torrent_urls %}
+<div><h3>Download:</h3>
 <ul>
 	{% for url in torrent_urls %}
 	<li><a href="{{url.url}}">{{url.url}}</a></li>
 	{% endfor %}
-</ul>
+</ul></div>
+{% else %}
+<div><h3>Do you have a link to a copy of this torrent? Please <a href="/">submit here</a>.</h3></div>
+{% endif %}
 </div>
 </div><hr /><div class="span-14 prepend-5">
 	<!-- Include the Google Friend Connect javascript library. -->
