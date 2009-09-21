@@ -69,11 +69,7 @@ class Upload(webapp.RequestHandler):
 
           if torrents_query.count(1) < 1:
             torrent.content  = "info hash: " + info_hash + "\n"
-            torrent.content += "magnet link: <a href=\"magnet:?xt=urn:btih:" + info_hash_b32 + "\">magnet:?xt=urn:btih:" + info_hash_b32 + "</a>\n"
-            if torrent_url is not None: # IN CASE ITS FROM A FETCH ALSO ADD WHERE IT CAME FROM
-              torrent.content  += "Download: <a href=\"" + torrent_url + "\">" + torrent_url + "</a>\n"
-            else:
-              torrent.content  += "\n"
+            torrent.content += "magnet link: <a href=\"magnet:?xt=urn:btih:" + info_hash_b32 + "\">magnet:?xt=urn:btih:" + info_hash_b32 + "</a>\n\n"
             try: # TRY TO READ THE CREATION DATE
               import time
               torrent.content += "Created: " + time.asctime(time.gmtime(file_dictionary['creation date'])) + "\n"
@@ -105,13 +101,20 @@ class Upload(webapp.RequestHandler):
                 self.response.out.write('bad torrent, no file name declared')
 
             torrent.put() # STORE THE TEXT TO THE DATASTORE
+            
+            if torrent_url is not None: # IN CASE ITS FROM A FETCH ALSO ADD WHERE IT CAME FROM
+              torrent_URL = TorrentURL()
+              torrent_URL.torrent = torrent.info_hash
+              torrent_URL.url = torrent_url
+              torrent_URL.put()
+              
             from google.appengine.api import memcache
             memcache.delete('front_page')
             memcache.delete('rss')
         
             self.redirect('/' + info_hash) # 302 HTTP REDIRECT TO THE TORRENT PAGE
   
-          else:
+          else: # THERES A TORRENT IN THE DATASTORE
             if torrent_url is not None and len(torrent_url) > 12:
               torrent_URL = TorrentURL()
               torrent_URL.torrent = torrent.info_hash
