@@ -55,6 +55,7 @@ class Upload(webapp.RequestHandler):
         except:
           self.response.out.write('torrent file can\'t be read' + str(sys.exc_info()[0]))
           file_dictionary=None
+          logging.debug('failed read: ' + str(sys.exc_info()[0]))
       
         if file_dictionary is not None:
           import sha
@@ -129,7 +130,7 @@ class Upload(webapp.RequestHandler):
             else:
               self.response.out.write('torrent already here')
       except:
-        self.response.out.write('unexpected error' + sys.exc_info()[0])
+        self.response.out.write('unexpected error' + str(sys.exc_info()[0]))
 
 application = webapp.WSGIApplication([('/upload', Upload)], debug=True)
 

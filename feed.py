@@ -22,7 +22,7 @@ class MainPage(RequestHandler):
         }
       if feed_type == 'rss':
         path = os.path.join(os.path.dirname(__file__), 'rss.xml')
-      elif:
+      elif feed_type == 'txt':
         path = os.path.join(os.path.dirname(__file__), 'feed.txt')
       feed_cache=template.render(path, template_values)
 
