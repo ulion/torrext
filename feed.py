@@ -11,7 +11,7 @@ class Torrent(db.Model):
   date = db.DateTimeProperty(auto_now_add=True)
   
 class MainPage(RequestHandler):
-  def get(self, feed_type):
+  def get(self, feed_type): 
     feed_cache=memcache.get(feed_type)
     if feed_cache is None:
       import os
@@ -20,7 +20,10 @@ class MainPage(RequestHandler):
       template_values = {
         'torrents': torrents,
         }
-      path = os.path.join(os.path.dirname(__file__), 'rss.xml')
+      if feed_type == 'rss':
+        path = os.path.join(os.path.dirname(__file__), 'rss.xml')
+      elif:
+        path = os.path.join(os.path.dirname(__file__), 'feed.txt')
       feed_cache=template.render(path, template_values)
 
       memcache.set(feed_type, feed_cache)
@@ -28,7 +31,8 @@ class MainPage(RequestHandler):
       
     self.response.out.write(feed_cache)
 
-application = WSGIApplication([('/(rss).xml', MainPage)],
+application = WSGIApplication([('/(rss).xml', MainPage),
+                               ('/(feed).txt', MainPage)],
                                      debug=True)
 
 def main():

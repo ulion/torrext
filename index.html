@@ -13,9 +13,9 @@
 		<div class="span-24 prepend-2"><h1><a href="/" id="sitename">torrext</a></h1>
 			<small>“Information is a source of learning. But unless it is organized, processed, and available to the right people in a format for decision making,	it is a burden, not a benefit.” - William Pollard</small></div>
 <div><hr /><form action="/upload" method="post" enctype="multipart/form-data">
-	<div class="span-11 prepend-1 append-12"><label>.torrent file URL:</label><br /><input type="text" name="torrent_url" class="title span-10" /></div>
-      <div class="span-11 prepend-1"><label>OR File:</label><br /><input type="file" name="file" class="title" /></div>
-      <div class="span-11 prepend-1 last"><label>And:</label><br /><input type="submit" name="upload" value="Poast it!" class="title span-10"></div>
+	<div class="span-13 prepend-1 append-10"><label>.torrent file URL:</label><br /><input type="text" name="torrent_url" class="title span-12" /></div>
+      <div class="span-13 prepend-1"><label>OR File:</label><br /><input type="file" name="file" id="file_input" width="490px" class="title span-12" /></div>
+      <div class="span-8 last"><label>And:</label><br /><input type="submit" name="upload" value="UPLOAD!" class="title span-8"></div>
     </form><hr /></div>
     <div class="span-11 prepend-1">
 	<h2>Most recent torrents</h2>
@@ -55,6 +55,12 @@
 		Send a request with the file contents base64 encoded in the "fileb64" argument,<br />
 		torrext will decode and use that. <small>let me know of any problems on the <a href="http://medecau.github.com/torrext">project page</a></small><br /><br />
 		
+		<strong>Giving back</strong><br \>
+		So you want to use the data stored in torrext in whatever app you want?<br \>
+		Not a problem.<br \>
+		There's am RSS feed that has the last 250 uploads and each torrent text is cleanly available by requesting its page with a raw=1 parameter.<br \>
+		Don't like the xml RSS feed?<br \>
+		Here's a listing in new line separated values.<br \><br \>
         That is all.<br />
     </div>
 <div class="span-24"><hr /><a href="/rss.xml">RSS<small>Cloud</small></a> - <a href="http://medecau.github.com/torrext">kopimi</a> - <a href="http://appspot.com">thanks!</a> - <a href="#" onclick="UserVoice.Popin.show(); return false;">feedback</a></div>
