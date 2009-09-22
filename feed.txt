@@ -1,0 +1,2 @@
+{% for torrent in torrents %}http://torrext.appspot.com/{{ torrent.info_hash }}
+{% endfor %}
