@@ -18,8 +18,16 @@ class TorrentURL(db.Model):
 
 class MainPage(webapp.RequestHandler):
   def get(self, info_hash):
-    #page=memcache.get(info_hash)
-    page = None
+    torrent_text = memcache.get(info_hash)
+    if torrent_text is None:
+      torrents_query = Torrent.all()
+      torrents_query.filter("info_hash = ", info_hash)
+      torrent = torrents_query.get()
+      torrent_urls_query = TorrentURL.all()
+      torrent_urls_query.filter("torrent =", torrent.info_hash)
+      torrent_urls = torrent_urls_query.fetch(10)
+      torrent_text = torrent.content
+    page=memcache.get('page' + info_hash)
     if page is None:
       torrents_query = Torrent.all()
       torrents_query.filter("info_hash = ", info_hash)
@@ -35,7 +43,7 @@ class MainPage(webapp.RequestHandler):
 
       path = os.path.join(os.path.dirname(__file__), 'torrent_page.html')
       page=template.render(path, template_values)
-      memcache.set(info_hash, page)
+      memcache.set('page' + info_hash, page)
       
     self.response.out.write(page)
       

@@ -45,6 +45,7 @@ class Upload(webapp.RequestHandler):
         file_contents = self.request.POST['file'].value
       except:
         self.response.out.write('no url nor file were provided')
+        file_contents=''
         
     if len(file_contents) > 0:
       try: # DO NOT OUTPUT ANYTHING TOO UGLY :P
@@ -102,7 +103,7 @@ class Upload(webapp.RequestHandler):
 
             torrent.put() # STORE THE TEXT TO THE DATASTORE
             
-            if torrent_url is not None: # IN CASE ITS FROM A FETCH ALSO ADD WHERE IT CAME FROM
+            if torrent_url is not None and len(torrent_url) > 12: # IN CASE ITS FROM A FETCH ALSO ADD WHERE IT CAME FROM
               torrent_URL = TorrentURL()
               torrent_URL.torrent = torrent.info_hash
               torrent_URL.url = torrent_url
