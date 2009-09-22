@@ -19,9 +19,9 @@ class TorrentURL(db.Model):
 class MainPage(webapp.RequestHandler):
   def get(self, info_hash):
 
-    if self.reques.get('raw') == '1':
-      torrent_text = memcache.get(info_hash)
-      if torrent_text is None:
+    if self.request.get('raw') == '1':
+      page = memcache.get(info_hash)
+      if page is None:
         torrents_query = Torrent.all()
         torrents_query.filter("info_hash = ", info_hash)
         torrent = torrents_query.get()
@@ -30,7 +30,7 @@ class MainPage(webapp.RequestHandler):
         torrent_urls = torrent_urls_query.fetch(10)
         page         = torrent.content + '\n\n'
         for url in torrent_urls:
-          page += url + '\n'
+          page += url.url + '\n'
         memcache.set(info_hash, page)
         
     else:
@@ -52,7 +52,7 @@ class MainPage(webapp.RequestHandler):
         page=template.render(path, template_values)
         memcache.set('page' + info_hash, page)
       
-      self.response.out.write(page)
+    self.response.out.write(page)
       
 application = webapp.WSGIApplication(
                                      [('/([\w]*)', MainPage)],
