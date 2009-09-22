@@ -20,7 +20,7 @@
 <h3>Download:</h3>
 <ul>
 	{% for url in torrent_urls %}
-	<li><a href="{{url.url}}">{{url.url}}</a></li>
+	<li><a href="{{url.url}}" rel="nofollow">{{url.url}}</a></li>
 	{% endfor %}
 </ul>
 {% else %}
