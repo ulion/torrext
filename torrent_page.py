@@ -19,7 +19,7 @@ class TorrentURL(db.Model):
 class MainPage(webapp.RequestHandler):
   def get(self, info_hash):
 
-    if shelf.reques.get('raw') == '1':
+    if self.reques.get('raw') == '1':
       torrent_text = memcache.get(info_hash)
       if torrent_text is None:
         torrents_query = Torrent.all()
