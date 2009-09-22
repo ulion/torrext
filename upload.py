@@ -118,13 +118,18 @@ class Upload(webapp.RequestHandler):
   
           else: # THERES A TORRENT IN THE DATASTORE
             if torrent_url is not None and len(torrent_url) > 12:
-              torrent_URL = TorrentURL()
-              torrent_URL.torrent = torrent.info_hash
-              torrent_URL.url = torrent_url
-              torrent_URL.put()
+              torrent_urls_query = TorrentURL.all()
+              torrent_urls_query.filter("url =", torrent_url)
+              if torrent_urls_query.count(1) < 1:
+                torrent_URL = TorrentURL()
+                torrent_URL.torrent = torrent.info_hash
+                torrent_URL.url = torrent_url
+                torrent_URL.put()
               from google.appengine.api import memcache
               memcache.delete(torrent.info_hash)
+              memcache.delete('page' + torrent.info_hash)
               memcache.delete('rss')
+              memcache.deleter('text')
               memcache.add('fresh', '1')
               self.redirect('/' + info_hash) # 302 HTTP REDIRECT TO THE TORRENT PAGE
             else:
