@@ -8,7 +8,7 @@ def main():
   url='http://brisk.ly/rest/ping'
   feed_url='http://torrext.appspot.com/rss.xml'
   should_ping=memcache.get('fresh')
-  if should_ping = '1':
+  if should_ping == '1':
     form_fields = {
       "url": feed_url
     }
