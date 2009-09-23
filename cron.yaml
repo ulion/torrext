@@ -1,0 +1,7 @@
+cron:
+- description: tracker status verification
+  url: /tasks/rssCloud_ping
+  schedule: every 1 minutes
+- description: torrent feeder
+  url: /tasks/rss_import
+  schedule: every 10 minutes
