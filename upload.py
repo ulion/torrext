@@ -113,6 +113,9 @@ class Upload(webapp.RequestHandler):
             from google.appengine.api import memcache
             memcache.delete('front_page')
             memcache.delete('rss')
+            memcache.set('fresh', '1')
+            logging.debug(str(memcache.get('fresh')))
+            
         
             self.redirect('/' + info_hash) # 302 HTTP REDIRECT TO THE TORRENT PAGE
   
@@ -130,7 +133,9 @@ class Upload(webapp.RequestHandler):
               memcache.delete('page' + torrent.info_hash)
               memcache.delete('rss')
               memcache.deleter('text')
-              memcache.add('fresh', '1')
+              memcache.set('fresh', '1')
+              logging.debug(str(memcache.get('fresh')))
+              
               self.redirect('/' + info_hash) # 302 HTTP REDIRECT TO THE TORRENT PAGE
             else:
               self.response.out.write('torrent already here')
