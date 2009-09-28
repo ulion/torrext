@@ -45,6 +45,11 @@ handlers:
   script: feed.py
   secure: optional
   
+- url: /feed.txt
+  script: feed.py
+  secure: optional
+  
+  
 - url: /upload
   script: upload.py
   secure: optional

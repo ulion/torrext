@@ -5,11 +5,12 @@
       <link>http://torrext.appspot.com/</link>
       <description>Processed and available.</description>
       <docs>http://blogs.law.harvard.edu/tech/rss</docs>
-      <cloud domain="brisk.ly" port="80" path="/rest/subscribe/" registerProcedure="" protocol="http-post" />
+      <cloud domain="rssgrandcentral.appspot.com" port="80" path="/subscribe" registerProcedure="" protocol="http-post" />
       <ttl>10</ttl>
 {% for torrent in torrents %}      <item>
          <title>{{ torrent.info_hash }}</title>
          <link>http://torrext.appspot.com/{{ torrent.info_hash }}</link>
+		 <guid>http://torrext.appspot.com/{{ torrent.info_hash }}</guid>
          <description>{{ torrent.content }}</description>
          <pubDate>{{ torrent.date }}</pubDate>
       </item>

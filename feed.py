@@ -24,6 +24,8 @@ class MainPage(RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'rss.xml')
       elif feed_type == 'txt':
         path = os.path.join(os.path.dirname(__file__), 'feed.txt')
+      else:
+        path = os.path.join(os.path.dirname(__file__), 'feed.txt')
       feed_cache=template.render(path, template_values)
 
       memcache.set(feed_type, feed_cache)

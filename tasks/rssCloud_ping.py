@@ -2,7 +2,7 @@ from google.appengine.api import memcache
 import logging
 
 def main():
-  url='http://brisk.ly/rest/ping'
+  url='http://rssgrandcentral.appspot.com/ping'
   feed_url='http://torrext.appspot.com/rss.xml'
   should_ping=memcache.get('fresh')
   if should_ping is not None:
